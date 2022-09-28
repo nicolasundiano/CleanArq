@@ -2,7 +2,7 @@
 using CleanArq.SharedKernel.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace CleanArq.Infrastructure.Persistence.Repositories;
+namespace CleanArq.Infrastructure.Persistence;
 
 public class EfRepository<T> : IRepository<T> where T : BaseEntity, IAggregateRoot
 {

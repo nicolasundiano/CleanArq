@@ -2,7 +2,6 @@
 using CleanArq.Application.Common.Interfaces.Services;
 using CleanArq.Infrastructure.IdentityAuth;
 using CleanArq.Infrastructure.Persistence;
-using CleanArq.Infrastructure.Persistence.Repositories;
 using CleanArq.Infrastructure.Services;
 using CleanArq.SharedKernel.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
