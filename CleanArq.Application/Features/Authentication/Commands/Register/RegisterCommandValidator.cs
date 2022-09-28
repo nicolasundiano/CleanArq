@@ -6,9 +6,21 @@ public class RegisterCommandValidator : AbstractValidator<RegisterCommand>
 {
     public RegisterCommandValidator()
     {
-        RuleFor(x => x.FirstName).NotEmpty();
-        RuleFor(x => x.LastName).NotEmpty();
-        RuleFor(x => x.Email).NotEmpty();
+        RuleFor(x => x.FirstName).NotEmpty().DependentRules(() =>
+        {
+            RuleFor(x => x.FirstName).NotEmpty().MaximumLength(256);
+        });
+
+        RuleFor(x => x.LastName).NotEmpty().DependentRules(() =>
+        {
+            RuleFor(x => x.LastName).NotEmpty().MaximumLength(256);
+        });
+
+        RuleFor(x => x.Email).NotEmpty().DependentRules(() =>
+        {
+            RuleFor(x => x.Email).NotEmpty().MaximumLength(320);
+        });
+
         RuleFor(x => x.Password).NotEmpty().DependentRules(() =>
         {
             RuleFor(x => x.Password).Matches(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$")
