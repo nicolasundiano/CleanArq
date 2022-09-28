@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace CleanArq.SharedKernel.Interfaces;
+namespace CleanArq.Application.Common.Specifications;
 
 public interface ISpecification<T>
 {

@@ -1,6 +1,6 @@
-﻿using CleanArq.SharedKernel.Base;
+﻿using CleanArq.Domain.Entities.Common;
 
-namespace CleanArq.SharedKernel.Interfaces;
+namespace CleanArq.Application.Common.Interfaces.Persistence;
 
 public interface IUnitOfWork : IDisposable
 {

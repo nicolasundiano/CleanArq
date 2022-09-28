@@ -1,4 +1,4 @@
-﻿namespace CleanArq.SharedKernel.Base;
+﻿namespace CleanArq.Domain.Entities.Common;
 
 public abstract class BaseEntity
 {

@@ -1,5 +1,4 @@
-﻿using CleanArq.SharedKernel.Base;
-using CleanArq.SharedKernel.Interfaces;
+﻿using CleanArq.Domain.Entities.Common;
 
 namespace CleanArq.Domain.Entities;
 

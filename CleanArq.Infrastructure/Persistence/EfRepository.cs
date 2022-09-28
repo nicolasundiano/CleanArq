@@ -1,5 +1,6 @@
-﻿using CleanArq.SharedKernel.Base;
-using CleanArq.SharedKernel.Interfaces;
+﻿using CleanArq.Application.Common.Interfaces.Persistence;
+using CleanArq.Application.Common.Specifications;
+using CleanArq.Domain.Entities.Common;
 using Microsoft.EntityFrameworkCore;
 
 namespace CleanArq.Infrastructure.Persistence;

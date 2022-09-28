@@ -1,6 +1,7 @@
-﻿using CleanArq.SharedKernel.Base;
+﻿using CleanArq.Application.Common.Specifications;
+using CleanArq.Domain.Entities.Common;
 
-namespace CleanArq.SharedKernel.Interfaces;
+namespace CleanArq.Application.Common.Interfaces.Persistence;
 
 public interface IRepository<T> where T : BaseEntity, IAggregateRoot
 {

@@ -1,7 +1,6 @@
-﻿using CleanArq.SharedKernel.Interfaces;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
-namespace CleanArq.SharedKernel.Base;
+namespace CleanArq.Application.Common.Specifications;
 
 public class BaseSpecification<T> : ISpecification<T>
 {

@@ -1,4 +1,4 @@
-﻿namespace CleanArq.SharedKernel.Base;
+﻿namespace CleanArq.Application.Common.Specifications;
 
 public abstract class PaginationParams
 {

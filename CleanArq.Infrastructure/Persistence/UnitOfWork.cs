@@ -1,5 +1,5 @@
-﻿using CleanArq.SharedKernel.Base;
-using CleanArq.SharedKernel.Interfaces;
+﻿using CleanArq.Application.Common.Interfaces.Persistence;
+using CleanArq.Domain.Entities.Common;
 using System.Collections;
 
 namespace CleanArq.Infrastructure.Persistence;

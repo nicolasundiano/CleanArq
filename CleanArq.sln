@@ -19,8 +19,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArq.Infrastructure", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArq.Contracts", "CleanArq.Contracts\CleanArq.Contracts.csproj", "{3058BAA5-D1BA-419A-9530-12F8847D8303}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArq.SharedKernel", "CleanArq.SharedKernel\CleanArq.SharedKernel.csproj", "{AAC6DACB-764F-46B5-8639-F620373A6CD7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,10 +45,6 @@ Global
 		{3058BAA5-D1BA-419A-9530-12F8847D8303}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3058BAA5-D1BA-419A-9530-12F8847D8303}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3058BAA5-D1BA-419A-9530-12F8847D8303}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AAC6DACB-764F-46B5-8639-F620373A6CD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AAC6DACB-764F-46B5-8639-F620373A6CD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AAC6DACB-764F-46B5-8639-F620373A6CD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AAC6DACB-764F-46B5-8639-F620373A6CD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,7 +55,6 @@ Global
 		{7DC75F0E-28BE-45D7-A6EF-EE9EE7BB9DC7} = {2A1F63F9-12D8-4160-BDB5-C66E40C48E89}
 		{D33F7FA9-92F6-427F-BF86-62DE901FE102} = {15E2F182-F600-4300-BCFA-9E3431B0B2D0}
 		{3058BAA5-D1BA-419A-9530-12F8847D8303} = {1A5D7BEC-B4B4-42BD-B31B-6255CBA89F07}
-		{AAC6DACB-764F-46B5-8639-F620373A6CD7} = {2A1F63F9-12D8-4160-BDB5-C66E40C48E89}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {756D919F-C4C6-4E70-87A3-C6CCA889BD7D}
