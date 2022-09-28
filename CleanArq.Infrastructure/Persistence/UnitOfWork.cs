@@ -7,7 +7,7 @@ namespace CleanArq.Infrastructure.Persistence;
 public class UnitOfWork : IUnitOfWork, IAggregateRoot
 {
     private readonly AppDbContext _context;
-    private Hashtable _repositories;
+    private Hashtable _repositories = null!;
 
     public UnitOfWork(AppDbContext context)
     {
