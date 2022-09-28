@@ -26,7 +26,12 @@ public class RegisterCommandHandler :
     {
         var spec = new UserSpecification(command.Email);
 
-        if (await _unitOfWork.Repository<User>().GetBySpecAsync(spec) is not null || await _authRepository.UserExists(command.Email))
+        if (await _unitOfWork.Repository<User>().GetBySpecAsync(spec) is not null)
+        {
+            return Errors.User.DuplicateEmail;
+        }
+
+        if (await _authRepository.UserExists(command.Email))
         {
             return Errors.User.DuplicateEmail;
         }
