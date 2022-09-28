@@ -1,6 +1,8 @@
 using CleanArq.Api;
 using CleanArq.Application;
 using CleanArq.Infrastructure;
+using CleanArq.Infrastructure.IdentityAuth;
+using CleanArq.Infrastructure.IdentityAuth.Seeds;
 using CleanArq.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -42,6 +44,12 @@ async Task RunMigrations()
         var context = service.GetRequiredService<AppDbContext>();
         await context.Database.MigrateAsync();
         //await AppDbContextSeed.SeedAsync(context, loggerFactory);
+
+        var userManager = service.GetRequiredService<UserManager<ApplicationUser>>();
+        var roleManager = service.GetRequiredService<RoleManager<IdentityRole>>();
+        var identityContext = service.GetRequiredService<IdentityAuthDbContext>();
+        await identityContext.Database.MigrateAsync();
+        await SeedRoles.SeedRolesAsync(identityContext, roleManager, loggerFactory);
     }
     catch (Exception e)
     {
