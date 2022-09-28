@@ -36,12 +36,7 @@ public class RegisterCommandHandler :
             return Errors.User.DuplicateEmail;
         }
 
-        var user = new User
-        {
-            FirstName = command.FirstName,
-            LastName = command.LastName,
-            Email = command.Email,
-        };
+        var user = new User(command.FirstName, command.LastName, command.Email);
 
         _unitOfWork.Repository<User>().Add(user);
         await _unitOfWork.CompleteAsync();
