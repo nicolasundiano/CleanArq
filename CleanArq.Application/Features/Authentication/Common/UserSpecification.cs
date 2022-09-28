@@ -1,5 +1,5 @@
 ﻿using CleanArq.Application.Common.Specifications;
-using CleanArq.Domain.Entities;
+using CleanArq.Domain.Entities.User;
 
 namespace CleanArq.Application.Features.Authentication.Common;
 

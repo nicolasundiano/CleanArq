@@ -1,6 +1,6 @@
 ﻿using CleanArq.Application.Common.Interfaces.Authentication;
 using CleanArq.Domain.Common.Constants;
-using CleanArq.Domain.Entities;
+using CleanArq.Domain.Entities.User;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 

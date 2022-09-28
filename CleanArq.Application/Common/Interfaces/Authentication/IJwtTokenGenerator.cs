@@ -1,4 +1,4 @@
-using CleanArq.Domain.Entities;
+using CleanArq.Domain.Entities.User;
 
 namespace CleanArq.Application.Common.Interfaces.Authentication;
 

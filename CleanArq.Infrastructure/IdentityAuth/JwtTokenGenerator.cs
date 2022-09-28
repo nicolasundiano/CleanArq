@@ -3,7 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using CleanArq.Application.Common.Interfaces.Authentication;
 using CleanArq.Application.Common.Interfaces.Services;
-using CleanArq.Domain.Entities;
+using CleanArq.Domain.Entities.User;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 

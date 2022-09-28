@@ -1,10 +1,10 @@
 ﻿using CleanArq.Application.Features.Authentication.Common;
-using CleanArq.Domain.Entities;
 using CleanArq.Domain.Common.Errors;
 using ErrorOr;
 using MediatR;
 using CleanArq.Application.Common.Interfaces.Authentication;
 using CleanArq.Application.Common.Interfaces.Persistence;
+using CleanArq.Domain.Entities.User;
 
 namespace CleanArq.Application.Features.Authentication.Commands.Register;
 

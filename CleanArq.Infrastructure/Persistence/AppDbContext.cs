@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using CleanArq.Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using CleanArq.Domain.Entities.Common;
+using CleanArq.Domain.Entities.User;
 
 namespace CleanArq.Infrastructure.Persistence;
 

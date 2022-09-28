@@ -1,6 +1,6 @@
 ﻿using CleanArq.Domain.Entities.Common;
 
-namespace CleanArq.Domain.Entities;
+namespace CleanArq.Domain.Entities.User;
 
 public class User : BaseEntity, IAggregateRoot
 {

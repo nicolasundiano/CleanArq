@@ -1,4 +1,4 @@
-﻿using CleanArq.Domain.Entities;
+﻿using CleanArq.Domain.Entities.User;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
