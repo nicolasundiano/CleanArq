@@ -22,6 +22,7 @@ public class AppDbContext : DbContext
     }
 
     public DbSet<User> Users { get; set; } = null!;
+    public DbSet<Address> Addresses { get; set; } = null!;
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
     {

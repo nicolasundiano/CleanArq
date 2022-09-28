@@ -61,7 +61,7 @@ namespace CleanArq.Infrastructure.Persistence.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Address");
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("CleanArq.Domain.Entities.User.User", b =>
