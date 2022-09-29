@@ -14,8 +14,8 @@ public static partial class Errors
             code: "User.Unexpected",
             description: "An unexpected error has occurred finding user authenticated.");
 
-        public static Error SettingAddress => Error.Unexpected(
+        public static Error UpserttingAddress => Error.Unexpected(
             code: "User.SettingAddress",
-            description: "An unexpected error has occurred setting address.");
+            description: "An unexpected error has occurred upsertting address.");
     }
 }
