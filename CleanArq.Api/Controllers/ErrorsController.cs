@@ -7,10 +7,19 @@ public class ErrorsController : ControllerBase
 {
     [Route("/error")]
     [ApiExplorerSettings(IgnoreApi = true)]
-    public IActionResult Error()
+    public IActionResult ExceptionError()
     {
         Exception? exception = HttpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
 
-        return Problem(exception?.InnerException?.Message);
+        var message = exception?.Message ?? exception?.InnerException?.Message;
+
+        return Problem(message);
+    }
+
+    [Route("/error/{code:int}")]
+    [ApiExplorerSettings(IgnoreApi = true)]
+    public IActionResult ReExecutedPage(int? code)
+    {
+        return Problem(statusCode: code);
     }
 }
