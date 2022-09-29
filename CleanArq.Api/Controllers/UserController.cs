@@ -1,5 +1,7 @@
-﻿using CleanArq.Application.Features.UserFeatures.Commands.UpsertAddress;
+﻿using CleanArq.Application.Common.Models;
+using CleanArq.Application.Features.UserFeatures.Commands.UpsertAddress;
 using CleanArq.Application.Users.Commands.UpsertAddress;
+using CleanArq.Application.Users.Common.Dtos;
 using CleanArq.Application.Users.Queries.GetUserListPaged;
 using CleanArq.Contracts.User;
 using ErrorOr;
@@ -49,10 +51,10 @@ public class UserController : ApiController
     {
         var query = _mapper.Map<GetUserListPagedCommand>(request);
 
-        ErrorOr<GetUserListPagedResult> result = await _mediator.Send(query);
+        ErrorOr<PaginatedList<UserDto>> result = await _mediator.Send(query);
 
         return result.Match(
-            result => Ok(),
+            result => Ok(result),
             errors => Problem(errors));
     }
 }
