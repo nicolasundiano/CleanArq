@@ -1,5 +1,5 @@
 ﻿using CleanArq.Application.Features.UserFeatures.Commands.UpsertAddress;
-using CleanArq.Contracts.Authentication;
+using CleanArq.Application.Users.Commands.UpsertAddress;
 using CleanArq.Contracts.User;
 using Mapster;
 

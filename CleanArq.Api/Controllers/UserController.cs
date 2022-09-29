@@ -1,5 +1,6 @@
 ﻿using CleanArq.Application.Features.UserFeatures.Commands.UpsertAddress;
-using CleanArq.Application.Features.UserFeatures.Queries.GetUserListPaged;
+using CleanArq.Application.Users.Commands.UpsertAddress;
+using CleanArq.Application.Users.Queries.GetUserListPaged;
 using CleanArq.Contracts.User;
 using ErrorOr;
 using MapsterMapper;
@@ -7,7 +8,6 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace CleanArq.Api.Controllers;
 
