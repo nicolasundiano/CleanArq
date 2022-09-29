@@ -1,5 +1,4 @@
-﻿using CleanArq.Application.Common.Helpers;
-using CleanArq.Application.Common.Interfaces.Persistence;
+﻿using CleanArq.Application.Common.Interfaces.Persistence;
 using CleanArq.Application.Common.Models;
 using CleanArq.Application.Users.Common.Dtos;
 using CleanArq.Application.Users.Common.Specifications;
