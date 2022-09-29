@@ -3,9 +3,9 @@ using CleanArq.Application.Users.Common.Dtos;
 using ErrorOr;
 using MediatR;
 
-namespace CleanArq.Application.Users.Queries.GetUserListPaged;
+namespace CleanArq.Application.Users.Queries.GetUserListPaginated;
 
-public record GetUserListPagedCommand(
+public record GetUserListPaginatedCommand(
     string? Search,
     string? Sort,
     int? PageIndex,

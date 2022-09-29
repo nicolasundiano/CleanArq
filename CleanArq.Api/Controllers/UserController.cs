@@ -1,7 +1,7 @@
 ﻿using CleanArq.Application.Common.Models;
 using CleanArq.Application.Users.Commands.UpsertAddress;
 using CleanArq.Application.Users.Common.Dtos;
-using CleanArq.Application.Users.Queries.GetUserListPaged;
+using CleanArq.Application.Users.Queries.GetUserListPaginated;
 using ErrorOr;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -31,7 +31,7 @@ public class UserController : ApiController
 
     [HttpGet]
     [AllowAnonymous]
-    public async Task<IActionResult> GetUsers([FromQuery] GetUserListPagedCommand query)
+    public async Task<IActionResult> GetUsers([FromQuery] GetUserListPaginatedCommand query)
     {
         ErrorOr<PaginatedList<UserDto>> result = await _mediator.Send(query);
 

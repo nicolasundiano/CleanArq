@@ -9,7 +9,7 @@ public class UserSpecification : BaseSpecification<User>
     {
     }
 
-    public UserSpecification(UserListPagedParams @params) : base(x =>
+    public UserSpecification(UserListPaginatedParams @params) : base(x =>
             string.IsNullOrEmpty(@params.Search) || x.FirstName.ToLower().Contains(@params.Search)
     )
     {

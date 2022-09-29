@@ -6,22 +6,22 @@ using CleanArq.Domain.Entities.User;
 using ErrorOr;
 using MediatR;
 
-namespace CleanArq.Application.Users.Queries.GetUserListPaged;
+namespace CleanArq.Application.Users.Queries.GetUserListPaginated;
 
-public class GetUserListPagedCommandHandler : IRequestHandler<GetUserListPagedCommand, ErrorOr<PaginatedList<UserDto>>>
+public class GetUserListPaginatedCommandHandler : IRequestHandler<GetUserListPaginatedCommand, ErrorOr<PaginatedList<UserDto>>>
 {
     private readonly IUnitOfWork _unitOfWork;
 
-    public GetUserListPagedCommandHandler(IUnitOfWork unitOfWork)
+    public GetUserListPaginatedCommandHandler(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<ErrorOr<PaginatedList<UserDto>>> Handle(GetUserListPagedCommand request, CancellationToken cancellationToken)
+    public async Task<ErrorOr<PaginatedList<UserDto>>> Handle(GetUserListPaginatedCommand request, CancellationToken cancellationToken)
     {
-        var userListPagedParams = new UserListPagedParams(request.Search, request.Sort, request.PageIndex, request.PageSize);
-        var spec = new UserSpecification(userListPagedParams);
-        var countSpec = new UserForCountingSpecification(userListPagedParams);
+        var userListPaginatedParams = new UserListPaginatedParams(request.Search, request.Sort, request.PageIndex, request.PageSize);
+        var spec = new UserSpecification(userListPaginatedParams);
+        var countSpec = new UserForCountingSpecification(userListPaginatedParams);
 
         var users = await _unitOfWork.Repository<User>().ListAsync(spec);
         var usersCount = await _unitOfWork.Repository<User>().CountAsync(countSpec);
@@ -42,7 +42,7 @@ public class GetUserListPagedCommandHandler : IRequestHandler<GetUserListPagedCo
         return new PaginatedList<UserDto>(
             usersDto,
             usersCount,
-            userListPagedParams.PageIndex,
-            userListPagedParams.PageSize);
+            userListPaginatedParams.PageIndex,
+            userListPaginatedParams.PageSize);
     }
 }
