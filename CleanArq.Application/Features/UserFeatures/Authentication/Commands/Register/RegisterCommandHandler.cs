@@ -1,12 +1,13 @@
-﻿using CleanArq.Application.Features.Authentication.Common;
-using CleanArq.Domain.Common.Errors;
+﻿using CleanArq.Domain.Common.Errors;
 using ErrorOr;
 using MediatR;
 using CleanArq.Application.Common.Interfaces.Authentication;
 using CleanArq.Application.Common.Interfaces.Persistence;
 using CleanArq.Domain.Entities.User;
+using CleanArq.Application.Features.UserFeatures.Authentication.Common;
+using CleanArq.Application.Features.UserFeatures.Common;
 
-namespace CleanArq.Application.Features.Authentication.Commands.Register;
+namespace CleanArq.Application.Features.UserFeatures.Authentication.Commands.Register;
 
 public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<AuthenticationResult>>
 {

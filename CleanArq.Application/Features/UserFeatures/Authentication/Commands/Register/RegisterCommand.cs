@@ -1,8 +1,8 @@
-using CleanArq.Application.Features.Authentication.Common;
+using CleanArq.Application.Features.UserFeatures.Authentication.Common;
 using ErrorOr;
 using MediatR;
 
-namespace CleanArq.Application.Features.Authentication.Commands.Register;
+namespace CleanArq.Application.Features.UserFeatures.Authentication.Commands.Register;
 
 public record RegisterCommand(
     string FirstName,

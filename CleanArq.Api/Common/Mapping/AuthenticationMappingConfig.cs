@@ -1,6 +1,6 @@
-using CleanArq.Application.Features.Authentication.Commands.Register;
-using CleanArq.Application.Features.Authentication.Common;
-using CleanArq.Application.Features.Authentication.Queries.Login;
+using CleanArq.Application.Features.UserFeatures.Authentication.Commands.Register;
+using CleanArq.Application.Features.UserFeatures.Authentication.Common;
+using CleanArq.Application.Features.UserFeatures.Authentication.Queries.Login;
 using CleanArq.Contracts.Authentication;
 using Mapster;
 

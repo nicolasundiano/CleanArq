@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace CleanArq.Application.Features.Authentication.Queries.Login;
+namespace CleanArq.Application.Features.UserFeatures.Authentication.Queries.Login;
 
 public class LoginQueryValidator : AbstractValidator<LoginQuery>
 {

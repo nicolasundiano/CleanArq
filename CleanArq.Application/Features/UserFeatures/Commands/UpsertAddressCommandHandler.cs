@@ -1,5 +1,4 @@
 ﻿using CleanArq.Application.Common.Interfaces.Persistence;
-using CleanArq.Application.Features.Authentication.Common;
 using CleanArq.Domain.Entities.User;
 using CleanArq.Domain.Common.Errors;
 using ErrorOr;
@@ -23,12 +22,12 @@ public class UpsertAddressCommandHandler : IRequestHandler<UpsertAddressCommand,
 
         var currentUser = await _unitOfWork.Repository<User>().GetBySpecAsync(spec);
 
-        if (currentUser is not User user)
+        if (currentUser is not { } user)
         {
             return Errors.User.AuthenticatedNotFound;
         }
 
-        if (user.Address is not Address address)
+        if (user.Address is not { } address)
         {
             user.SetAddress(command.Street, command.City, command.Country);
         }

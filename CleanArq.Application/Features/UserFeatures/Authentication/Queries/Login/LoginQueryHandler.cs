@@ -1,12 +1,13 @@
 ﻿using CleanArq.Application.Common.Interfaces.Authentication;
-using CleanArq.Application.Features.Authentication.Common;
 using CleanArq.Domain.Common.Errors;
 using ErrorOr;
 using MediatR;
 using CleanArq.Application.Common.Interfaces.Persistence;
 using CleanArq.Domain.Entities.User;
+using CleanArq.Application.Features.UserFeatures.Authentication.Common;
+using CleanArq.Application.Features.UserFeatures.Common;
 
-namespace CleanArq.Application.Features.Authentication.Queries.Login;
+namespace CleanArq.Application.Features.UserFeatures.Authentication.Queries.Login;
 
 public class LoginQueryHandler :
     IRequestHandler<LoginQuery, ErrorOr<AuthenticationResult>>
@@ -31,7 +32,7 @@ public class LoginQueryHandler :
             return Errors.Authentication.InvalidCredentials;
         }
 
-        if (await _unitOfWork.Repository<User>().GetBySpecAsync(spec) is not User user)
+        if (await _unitOfWork.Repository<User>().GetBySpecAsync(spec) is not { } user)
         {
             return Errors.Authentication.InvalidCredentials;
         }

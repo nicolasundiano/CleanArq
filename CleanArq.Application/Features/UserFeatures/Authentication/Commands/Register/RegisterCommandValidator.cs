@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace CleanArq.Application.Features.Authentication.Commands.Register;
+namespace CleanArq.Application.Features.UserFeatures.Authentication.Commands.Register;
 
 public class RegisterCommandValidator : AbstractValidator<RegisterCommand>
 {
