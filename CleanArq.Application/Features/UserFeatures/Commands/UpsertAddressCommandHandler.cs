@@ -18,7 +18,7 @@ public class UpsertAddressCommandHandler : IRequestHandler<UpsertAddressCommand,
 
     public async Task<ErrorOr<UpsertAddressResult>> Handle(UpsertAddressCommand command, CancellationToken cancellationToken)
     {
-        var spec = new UserSpecification(command.UserEmail);
+        var spec = new UserWithAddressSpecification(command.UserEmail);
 
         var currentUser = await _unitOfWork.Repository<User>().GetBySpecAsync(spec);
 
