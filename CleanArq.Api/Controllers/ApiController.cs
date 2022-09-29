@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 namespace CleanArq.Api.Controllers;
 
 [ApiController]
-[Authorize]
+[Authorize(AuthenticationSchemes = "Bearer")]
 public class ApiController : ControllerBase
 {
     protected IActionResult Problem(List<Error> errors)

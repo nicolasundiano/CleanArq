@@ -7,5 +7,6 @@ public class UserSpecification : BaseSpecification<User>
 {
 	public UserSpecification(string email) : base(x => x.Email.Equals(email))
  	{
+		AddInclude(x => x.Address);
 	}
 }

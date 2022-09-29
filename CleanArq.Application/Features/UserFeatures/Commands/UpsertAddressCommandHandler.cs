@@ -1,0 +1,58 @@
+﻿using CleanArq.Application.Common.Interfaces.Persistence;
+using CleanArq.Application.Features.Authentication.Common;
+using CleanArq.Domain.Entities.User;
+using CleanArq.Domain.Common.Errors;
+using ErrorOr;
+using MediatR;
+using CleanArq.Application.Features.UserFeatures.Common;
+
+namespace CleanArq.Application.Features.UserFeatures.Commands;
+
+public class UpsertAddressCommandHandler : IRequestHandler<UpsertAddressCommand, ErrorOr<UpsertAddressResult>>
+{
+    private readonly IUnitOfWork _unitOfWork;
+
+    public UpsertAddressCommandHandler(IUnitOfWork unitOfWork)
+    {
+        _unitOfWork = unitOfWork;
+    }
+
+    public async Task<ErrorOr<UpsertAddressResult>> Handle(UpsertAddressCommand command, CancellationToken cancellationToken)
+    {
+        var spec = new UserSpecification(command.UserEmail);
+
+        var currentUser = await _unitOfWork.Repository<User>().GetBySpecAsync(spec);
+
+        if (currentUser is not User user)
+        {
+            return Errors.User.AuthenticatedNotFound;
+        }
+
+        if (user.Address is not Address address)
+        {
+            user.SetAddress(command.Street, command.City, command.Country);
+        }
+        else
+        {
+            address.UpdateAddress(command.Street, command.City, command.Country);
+        }
+
+        _unitOfWork.Repository<User>().Update(user);
+
+        var result = await _unitOfWork.CompleteAsync();
+
+        if (result == 0)
+        {
+            return Errors.User.SettingAddress;
+        }
+
+        return new UpsertAddressResult(
+            new AddressDto
+            {
+                Id = user.Address!.Id,
+                Street = user.Address!.Street,
+                City = user.Address!.City,
+                Country = user.Address!.Country,
+            });
+    }
+}

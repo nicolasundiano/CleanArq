@@ -8,8 +8,7 @@ using CleanArq.Domain.Entities.User;
 
 namespace CleanArq.Application.Features.Authentication.Commands.Register;
 
-public class RegisterCommandHandler :
-    IRequestHandler<RegisterCommand, ErrorOr<AuthenticationResult>>
+public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<AuthenticationResult>>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IAuthRepository _authRepository;
