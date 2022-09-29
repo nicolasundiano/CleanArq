@@ -10,7 +10,7 @@ public static partial class Errors
             code: "User.DuplicateEmail",
             description: "Email is already in use.");
 
-        public static Error AuthenticatedNotFound => Error.Unexpected(
+        public static Error NotAuthenticated => Error.Unexpected(
             code: "User.Unexpected",
             description: "An unexpected error has occurred finding user authenticated.");
 

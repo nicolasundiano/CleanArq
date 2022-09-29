@@ -25,7 +25,7 @@ public class UpsertAddressCommandHandler : IRequestHandler<UpsertAddressCommand,
     {
         if (string.IsNullOrEmpty(_userEmail))
         {
-            return Errors.User.AuthenticatedNotFound;
+            return Errors.User.NotAuthenticated;
         }
 
         var spec = new UserWithAddressSpecification(_userEmail);
@@ -34,7 +34,7 @@ public class UpsertAddressCommandHandler : IRequestHandler<UpsertAddressCommand,
 
         if (currentUser is not { } user)
         {
-            return Errors.User.AuthenticatedNotFound;
+            return Errors.User.NotAuthenticated;
         }
 
         if (user.Address is not { } address)
