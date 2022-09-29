@@ -3,24 +3,32 @@ using CleanArq.Domain.Entities.User;
 using CleanArq.Domain.Common.Errors;
 using ErrorOr;
 using MediatR;
-using CleanArq.Application.Features.UserFeatures.Commands.UpsertAddress;
 using CleanArq.Application.Users.Common.Specifications;
 using CleanArq.Application.Users.Common.Dtos;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace CleanArq.Application.Users.Commands.UpsertAddress;
 
-public class UpsertAddressCommandHandler : IRequestHandler<UpsertAddressCommand, ErrorOr<UpsertAddressResult>>
+public class UpsertAddressCommandHandler : IRequestHandler<UpsertAddressCommand, ErrorOr<AddressDto>>
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly string? _userEmail;
 
-    public UpsertAddressCommandHandler(IUnitOfWork unitOfWork)
+    public UpsertAddressCommandHandler(IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor)
     {
         _unitOfWork = unitOfWork;
+        _userEmail = httpContextAccessor?.HttpContext?.User?.FindFirst(ClaimTypes.Email)?.Value;
     }
 
-    public async Task<ErrorOr<UpsertAddressResult>> Handle(UpsertAddressCommand command, CancellationToken cancellationToken)
+    public async Task<ErrorOr<AddressDto>> Handle(UpsertAddressCommand command, CancellationToken cancellationToken)
     {
-        var spec = new UserWithAddressSpecification(command.UserEmail);
+        if (string.IsNullOrEmpty(_userEmail))
+        {
+            return Errors.User.AuthenticatedNotFound;
+        }
+
+        var spec = new UserWithAddressSpecification(_userEmail);
 
         var currentUser = await _unitOfWork.Repository<User>().GetAsync(spec);
 
@@ -47,13 +55,12 @@ public class UpsertAddressCommandHandler : IRequestHandler<UpsertAddressCommand,
             return Errors.User.SettingAddress;
         }
 
-        return new UpsertAddressResult(
-            new AddressDto
-            {
-                Id = user.Address!.Id,
-                Street = user.Address!.Street,
-                City = user.Address!.City,
-                Country = user.Address!.Country,
-            });
+        return new AddressDto
+        {
+            Id = user.Address!.Id,
+            Street = user.Address!.Street,
+            City = user.Address!.City,
+            Country = user.Address!.Country,
+        };
     }
 }

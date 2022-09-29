@@ -1,5 +1,4 @@
 ﻿using CleanArq.Api.Common.Errors;
-using CleanArq.Api.Common.Mapping;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.OpenApi.Models;
 
@@ -14,7 +13,6 @@ public static class DependencyInjection
 
         services.AddHttpContextAccessor();
         services.AddSingleton<ProblemDetailsFactory, CleanArqProblemDetailsFactory>();
-        services.AddMappings();
         services.AddSwagger();
 
         return services;

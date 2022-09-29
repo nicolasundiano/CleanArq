@@ -7,8 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mapster" Version="7.3.0" />
-    <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.9">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -18,7 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CleanArq.Application\CleanArq.Application.csproj" />
-    <ProjectReference Include="..\CleanArq.Contracts\CleanArq.Contracts.csproj" />
     <ProjectReference Include="..\CleanArq.Infrastructure\CleanArq.Infrastructure.csproj" />
   </ItemGroup>
 
