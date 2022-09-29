@@ -4,8 +4,10 @@ using CleanArq.Domain.Common.Errors;
 using ErrorOr;
 using MediatR;
 using CleanArq.Application.Features.UserFeatures.Common;
+using CleanArq.Application.Features.UserFeatures.Common.Specifications;
+using CleanArq.Application.Features.UserFeatures.Common.Dtos;
 
-namespace CleanArq.Application.Features.UserFeatures.Commands;
+namespace CleanArq.Application.Features.UserFeatures.Commands.UpsertAddress;
 
 public class UpsertAddressCommandHandler : IRequestHandler<UpsertAddressCommand, ErrorOr<UpsertAddressResult>>
 {
@@ -20,7 +22,7 @@ public class UpsertAddressCommandHandler : IRequestHandler<UpsertAddressCommand,
     {
         var spec = new UserWithAddressSpecification(command.UserEmail);
 
-        var currentUser = await _unitOfWork.Repository<User>().GetBySpecAsync(spec);
+        var currentUser = await _unitOfWork.Repository<User>().GetAsync(spec);
 
         if (currentUser is not { } user)
         {

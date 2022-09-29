@@ -42,10 +42,10 @@ public class BaseSpecification<T> : ISpecification<T>
         OrderByDescending = orderByDesExpression;
     }
 
-    protected void ApplyPagination(int skip, int take)
+    protected void ApplyPagination(int pageSize, int pageIndex)
     {
-        Skip = skip;
-        Take = take;
+        Skip = pageSize * (pageIndex - 1);
+        Take = pageSize;
         IsPagingEnabled = true;
     }
 }

@@ -1,10 +1,13 @@
-﻿using CleanArq.Application.Features.UserFeatures.Commands;
+﻿using CleanArq.Application.Features.UserFeatures.Commands.UpsertAddress;
+using CleanArq.Application.Features.UserFeatures.Queries.GetUserListPaged;
 using CleanArq.Contracts.User;
 using ErrorOr;
 using MapsterMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace CleanArq.Api.Controllers;
 
@@ -37,6 +40,19 @@ public class UserController : ApiController
 
         return result.Match(
             result => Ok(_mapper.Map<UpsertAddressResponse>(result)),
+            errors => Problem(errors));
+    }
+
+    [HttpGet]
+    [AllowAnonymous]
+    public async Task<IActionResult> GetUsers([FromQuery] GetUserListPagedRequest request)
+    {
+        var query = _mapper.Map<GetUserListPagedCommand>(request);
+
+        ErrorOr<GetUserListPagedResult> result = await _mediator.Send(query);
+
+        return result.Match(
+            result => Ok(),
             errors => Problem(errors));
     }
 }

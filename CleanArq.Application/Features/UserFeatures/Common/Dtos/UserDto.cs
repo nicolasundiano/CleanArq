@@ -1,4 +1,4 @@
-﻿namespace CleanArq.Application.Features.UserFeatures.Common;
+﻿namespace CleanArq.Application.Features.UserFeatures.Common.Dtos;
 
 public class UserDto
 {

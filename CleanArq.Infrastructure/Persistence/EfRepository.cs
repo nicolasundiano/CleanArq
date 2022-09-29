@@ -19,7 +19,7 @@ public class EfRepository<T> : IRepository<T> where T : BaseEntity, IAggregateRo
         return await _dbContext.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
     }
 
-    public async Task<T?> GetBySpecAsync(ISpecification<T> spec)
+    public async Task<T?> GetAsync(ISpecification<T> spec)
     {
         return await ApplySpecification(spec).FirstOrDefaultAsync();
     }

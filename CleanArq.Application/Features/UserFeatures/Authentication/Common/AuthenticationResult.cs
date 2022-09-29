@@ -1,4 +1,4 @@
-using CleanArq.Application.Features.UserFeatures.Common;
+using CleanArq.Application.Features.UserFeatures.Common.Dtos;
 
 namespace CleanArq.Application.Features.UserFeatures.Authentication.Common;
 

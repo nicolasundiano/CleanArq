@@ -5,7 +5,8 @@ using CleanArq.Application.Common.Interfaces.Authentication;
 using CleanArq.Application.Common.Interfaces.Persistence;
 using CleanArq.Domain.Entities.User;
 using CleanArq.Application.Features.UserFeatures.Authentication.Common;
-using CleanArq.Application.Features.UserFeatures.Common;
+using CleanArq.Application.Features.UserFeatures.Common.Specifications;
+using CleanArq.Application.Features.UserFeatures.Common.Dtos;
 
 namespace CleanArq.Application.Features.UserFeatures.Authentication.Commands.Register;
 
@@ -26,7 +27,7 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<A
     {
         var spec = new UserSpecification(command.Email);
 
-        if (await _unitOfWork.Repository<User>().GetBySpecAsync(spec) is not null)
+        if (await _unitOfWork.Repository<User>().GetAsync(spec) is not null)
         {
             return Errors.User.DuplicateEmail;
         }

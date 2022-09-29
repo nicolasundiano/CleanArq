@@ -5,7 +5,8 @@ using MediatR;
 using CleanArq.Application.Common.Interfaces.Persistence;
 using CleanArq.Domain.Entities.User;
 using CleanArq.Application.Features.UserFeatures.Authentication.Common;
-using CleanArq.Application.Features.UserFeatures.Common;
+using CleanArq.Application.Features.UserFeatures.Common.Specifications;
+using CleanArq.Application.Features.UserFeatures.Common.Dtos;
 
 namespace CleanArq.Application.Features.UserFeatures.Authentication.Queries.Login;
 
@@ -32,7 +33,7 @@ public class LoginQueryHandler :
             return Errors.Authentication.InvalidCredentials;
         }
 
-        if (await _unitOfWork.Repository<User>().GetBySpecAsync(spec) is not { } user)
+        if (await _unitOfWork.Repository<User>().GetAsync(spec) is not { } user)
         {
             return Errors.Authentication.InvalidCredentials;
         }

@@ -6,7 +6,7 @@ namespace CleanArq.Application.Common.Interfaces.Persistence;
 public interface IRepository<T> where T : BaseEntity, IAggregateRoot
 {
     Task<T?> GetByIdAsync(int id);
-    Task<T?> GetBySpecAsync(ISpecification<T> spec);
+    Task<T?> GetAsync(ISpecification<T> spec);
     Task<List<T>> ListAsync();
     Task<List<T>> ListAsync(ISpecification<T> spec);
     Task<int> CountAsync();

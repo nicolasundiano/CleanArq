@@ -1,7 +1,7 @@
 ﻿using ErrorOr;
 using MediatR;
 
-namespace CleanArq.Application.Features.UserFeatures.Commands;
+namespace CleanArq.Application.Features.UserFeatures.Commands.UpsertAddress;
 
 public class UpsertAddressCommand : IRequest<ErrorOr<UpsertAddressResult>>
 {
@@ -10,4 +10,4 @@ public class UpsertAddressCommand : IRequest<ErrorOr<UpsertAddressResult>>
     public string? City { get; set; }
     public string? Country { get; set; }
 }
-    
+
