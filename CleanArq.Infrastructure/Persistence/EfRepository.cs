@@ -26,12 +26,12 @@ public class EfRepository<T> : IRepository<T> where T : BaseEntity, IAggregateRo
 
     public async Task<List<T>> ListAsync()
     {
-        return await _dbContext.Set<T>().ToListAsync();
+        return await _dbContext.Set<T>().AsNoTracking().ToListAsync();
     }
 
     public async Task<List<T>> ListAsync(ISpecification<T> spec)
     {
-        return await ApplySpecification(spec).ToListAsync();
+        return await ApplySpecification(spec).AsNoTracking().ToListAsync();
     }
 
     public async Task<int> CountAsync()
