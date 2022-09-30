@@ -41,7 +41,7 @@ public class EfRepository<T> : IRepository<T> where T : BaseEntity, IAggregateRo
 
     public async Task<int> CountAsync(ISpecification<T> spec)
     {
-        return await ApplySpecification(spec).CountAsync();
+        return await ApplySpecification(spec).AsNoTracking().CountAsync();
     }
 
     public void Add(T entity)
