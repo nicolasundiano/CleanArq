@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace CleanArq.Api.Controllers;
 
 [Route("auth")]
-[AllowAnonymous]
 public class AuthenticationController : ApiController
 {
     private readonly ISender _mediator;
@@ -22,6 +21,7 @@ public class AuthenticationController : ApiController
     }
 
     [HttpPost("register")]
+    [AllowAnonymous]
     public async Task<IActionResult> Register(RegisterCommand command)
     {
         ErrorOr<AuthenticationResult> authResult = await _mediator.Send(command);
@@ -32,6 +32,7 @@ public class AuthenticationController : ApiController
     }
 
     [HttpPost("login")]
+    [AllowAnonymous]
     public async Task<IActionResult> Login(LoginQuery query)
     {
         var authResult = await _mediator.Send(query);
