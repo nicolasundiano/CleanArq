@@ -52,7 +52,7 @@ public class UpsertAddressCommandHandler : IRequestHandler<UpsertAddressCommand,
 
         if (result == 0)
         {
-            return Errors.User.UpserttingAddress;
+            return Errors.User.ProblemUpserttingAddress;
         }
 
         return new AddressDto

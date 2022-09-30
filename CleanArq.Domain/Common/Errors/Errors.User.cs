@@ -11,11 +11,11 @@ public static partial class Errors
             description: "Email is already in use.");
 
         public static Error NotAuthenticated => Error.Unexpected(
-            code: "User.Unexpected",
+            code: "User.NotAuthenticated",
             description: "An unexpected error has occurred finding user authenticated.");
 
-        public static Error UpserttingAddress => Error.Unexpected(
-            code: "User.SettingAddress",
+        public static Error ProblemUpserttingAddress => Error.Unexpected(
+            code: "User.ProblemUpserttingAddress",
             description: "An unexpected error has occurred upsertting address.");
     }
 }
