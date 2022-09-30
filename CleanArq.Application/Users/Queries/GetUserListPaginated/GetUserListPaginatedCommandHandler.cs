@@ -1,4 +1,5 @@
-﻿using CleanArq.Application.Common.Interfaces.Persistence;
+﻿using AutoMapper;
+using CleanArq.Application.Common.Interfaces.Persistence;
 using CleanArq.Application.Common.Models;
 using CleanArq.Application.Users.Common.Dtos;
 using CleanArq.Application.Users.Common.Specifications;
@@ -11,10 +12,12 @@ namespace CleanArq.Application.Users.Queries.GetUserListPaginated;
 public class GetUserListPaginatedCommandHandler : IRequestHandler<GetUserListPaginatedCommand, ErrorOr<PaginatedList<UserDto>>>
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IMapper _mapper;
 
-    public GetUserListPaginatedCommandHandler(IUnitOfWork unitOfWork)
+    public GetUserListPaginatedCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
+        _mapper = mapper;
     }
 
     public async Task<ErrorOr<PaginatedList<UserDto>>> Handle(GetUserListPaginatedCommand request, CancellationToken cancellationToken)
@@ -26,18 +29,7 @@ public class GetUserListPaginatedCommandHandler : IRequestHandler<GetUserListPag
         var users = await _unitOfWork.Repository<User>().ListAsync(spec);
         var usersCount = await _unitOfWork.Repository<User>().CountAsync(countSpec);
 
-        var usersDto = new List<UserDto>();
-
-        foreach (var user in users)
-        {
-            usersDto.Add(new UserDto
-            {
-                Id = user.Id,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Email = user.Email
-            });
-        }
+        var usersDto = _mapper.Map<List<UserDto>>(users);
 
         return new PaginatedList<UserDto>(
             usersDto,

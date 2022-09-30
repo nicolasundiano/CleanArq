@@ -7,17 +7,20 @@ using CleanArq.Application.Users.Common.Specifications;
 using CleanArq.Application.Users.Common.Dtos;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
+using AutoMapper;
 
 namespace CleanArq.Application.Users.Commands.UpsertAddress;
 
 public class UpsertAddressCommandHandler : IRequestHandler<UpsertAddressCommand, ErrorOr<AddressDto>>
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IMapper _mapper;
     private readonly string? _userEmail;
 
-    public UpsertAddressCommandHandler(IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor)
+    public UpsertAddressCommandHandler(IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
+        _mapper = mapper;
         _userEmail = httpContextAccessor?.HttpContext?.User?.FindFirst(ClaimTypes.Email)?.Value;
     }
 
@@ -55,12 +58,6 @@ public class UpsertAddressCommandHandler : IRequestHandler<UpsertAddressCommand,
             return Errors.User.ProblemUpserttingAddress;
         }
 
-        return new AddressDto
-        {
-            Id = user.Address!.Id,
-            Street = user.Address!.Street,
-            City = user.Address!.City,
-            Country = user.Address!.Country,
-        };
+        return _mapper.Map<AddressDto>(user.Address);
     }
 }
