@@ -1,17 +1,16 @@
 ﻿using CleanArq.Application.Common.Interfaces.Authentication;
 using CleanArq.Domain.Common.Constants;
 using CleanArq.Domain.Entities.User;
-using MediatR;
 using Microsoft.AspNetCore.Identity;
 
 namespace CleanArq.Infrastructure.IdentityAuth;
 
-public class IdentityAuthRepository : IAuthRepository
+public class IdentityAuthService : IAuthService
 {
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
 
-    public IdentityAuthRepository(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+    public IdentityAuthService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
     {
         _userManager = userManager;
         _signInManager = signInManager;
@@ -37,6 +36,15 @@ public class IdentityAuthRepository : IAuthRepository
     public async Task<bool> PasswordSignInAsync(string email, string password)
     {
         var result = await _signInManager.PasswordSignInAsync(email, password, false, true);
+
+        return result.Succeeded;
+    }
+
+    public async Task<bool> ChangePasswordAsync(string email, string currentPassword, string newPassword)
+    {
+        var identityUser = await _userManager.FindByEmailAsync(email);
+
+        var result = await _userManager.ChangePasswordAsync(identityUser, currentPassword, newPassword);
 
         return result.Succeeded;
     }

@@ -14,13 +14,13 @@ public class LoginQueryHandler :
     IRequestHandler<LoginQuery, ErrorOr<AuthenticationResult>>
 {
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IAuthRepository _authRepository;
+    private readonly IAuthService _authService;
     private readonly IJwtTokenGenerator _jwtTokenGenerator;
 
-    public LoginQueryHandler(IUnitOfWork unitOfWork, IAuthRepository authRepository, IJwtTokenGenerator jwtTokenGenerator)
+    public LoginQueryHandler(IUnitOfWork unitOfWork, IAuthService authService, IJwtTokenGenerator jwtTokenGenerator)
     {
         _unitOfWork = unitOfWork;
-        _authRepository = authRepository;
+        _authService = authService;
         _jwtTokenGenerator = jwtTokenGenerator;
     }
 
@@ -28,7 +28,7 @@ public class LoginQueryHandler :
     {
         var spec = new UserSpecification(request.Email);
 
-        if (!await _authRepository.PasswordSignInAsync(request.Email, request.Password))
+        if (!await _authService.PasswordSignInAsync(request.Email, request.Password))
         {
             return Errors.Authentication.InvalidCredentials;
         }

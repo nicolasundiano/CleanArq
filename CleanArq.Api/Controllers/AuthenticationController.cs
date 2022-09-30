@@ -1,4 +1,5 @@
 ﻿using CleanArq.Application.Features.UserFeatures.Authentication.Commands.Register;
+using CleanArq.Application.Users.Authentication.Commands.ChangePassword;
 using CleanArq.Application.Users.Authentication.Common;
 using CleanArq.Application.Users.Authentication.Queries.Login;
 using CleanArq.Domain.Common.Errors;
@@ -44,6 +45,16 @@ public class AuthenticationController : ApiController
 
         return authResult.Match(
             authResult => Ok(authResult),
+            errors => Problem(errors));
+    }
+
+    [HttpPut("changePassword")]
+    public async Task<IActionResult> ChangePassword(ChangePasswordCommand command)
+    {
+        var result = await _mediator.Send(command);
+
+        return result.Match(
+            result => Ok(result),
             errors => Problem(errors));
     }
 }

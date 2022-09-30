@@ -31,7 +31,7 @@ public static class DependencyInjection
 
     private static IServiceCollection AddAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddScoped<IAuthRepository, IdentityAuthRepository>();
+        services.AddScoped<IAuthService, IdentityAuthService>();
 
         var jwtSettings = new JwtSettings();
         configuration.Bind(JwtSettings.SectionName, jwtSettings);

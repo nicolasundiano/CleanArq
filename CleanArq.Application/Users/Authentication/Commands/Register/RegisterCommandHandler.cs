@@ -14,13 +14,13 @@ namespace CleanArq.Application.Users.Authentication.Commands.Register;
 public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<AuthenticationResult>>
 {
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IAuthRepository _authRepository;
+    private readonly IAuthService _authService;
     private readonly IJwtTokenGenerator _jwtTokenGenerator;
 
-    public RegisterCommandHandler(IUnitOfWork unitOfWork, IAuthRepository authRepository, IJwtTokenGenerator jwtTokenGenerator)
+    public RegisterCommandHandler(IUnitOfWork unitOfWork, IAuthService authService, IJwtTokenGenerator jwtTokenGenerator)
     {
         _unitOfWork = unitOfWork;
-        _authRepository = authRepository;
+        _authService = authService;
         _jwtTokenGenerator = jwtTokenGenerator;
     }
 
@@ -33,7 +33,7 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<A
             return Errors.User.DuplicateEmail;
         }
 
-        if (await _authRepository.UserExists(command.Email))
+        if (await _authService.UserExists(command.Email))
         {
             return Errors.User.DuplicateEmail;
         }
@@ -43,7 +43,7 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<A
         _unitOfWork.Repository<User>().Add(user);
         await _unitOfWork.CompleteAsync();
 
-        await _authRepository.CreateUserAsync(user, command.Password);
+        await _authService.CreateUserAsync(user, command.Password);
 
         var token = _jwtTokenGenerator.GenerateToken(user);
 

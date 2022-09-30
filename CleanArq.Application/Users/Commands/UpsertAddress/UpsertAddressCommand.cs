@@ -4,10 +4,11 @@ using MediatR;
 
 namespace CleanArq.Application.Users.Commands.UpsertAddress;
 
-public class UpsertAddressCommand : IRequest<ErrorOr<AddressDto>>
-{
-    public string? Street { get; set; }
-    public string? City { get; set; }
-    public string? Country { get; set; }
-}
+public record UpsertAddressCommand(
+     string? Street,
+     string? City,
+     string? Country) : IRequest<ErrorOr<AddressDto>>;
+
+     
+
 
