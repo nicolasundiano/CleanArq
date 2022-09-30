@@ -17,7 +17,7 @@ public class Address : BaseEntity
 
     public int UserId { get; private set; }
 
-    public void UpdateAddress(string? street, string? city, string? country)
+    public void Update(string? street, string? city, string? country)
     {
         Street = street;
         City = city;

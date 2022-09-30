@@ -46,7 +46,7 @@ public class UpsertAddressCommandHandler : IRequestHandler<UpsertAddressCommand,
         }
         else
         {
-            address.UpdateAddress(command.Street, command.City, command.Country);
+            address.Update(command.Street, command.City, command.Country);
         }
 
         _unitOfWork.Repository<User>().Update(user);
