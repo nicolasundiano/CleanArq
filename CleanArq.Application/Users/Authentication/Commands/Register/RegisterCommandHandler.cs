@@ -8,6 +8,7 @@ using CleanArq.Application.Features.UserFeatures.Authentication.Commands.Registe
 using CleanArq.Application.Users.Authentication.Common;
 using CleanArq.Application.Users.Common.Specifications;
 using CleanArq.Application.Users.Common.Dtos;
+using CleanArq.Application.Common.Interfaces.Services;
 
 namespace CleanArq.Application.Users.Authentication.Commands.Register;
 
@@ -16,12 +17,14 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<A
     private readonly IUnitOfWork _unitOfWork;
     private readonly IAuthService _authService;
     private readonly IJwtTokenGenerator _jwtTokenGenerator;
+    private readonly IEmailSender _emailSender;
 
-    public RegisterCommandHandler(IUnitOfWork unitOfWork, IAuthService authService, IJwtTokenGenerator jwtTokenGenerator)
+    public RegisterCommandHandler(IUnitOfWork unitOfWork, IAuthService authService, IJwtTokenGenerator jwtTokenGenerator, IEmailSender emailSender)
     {
         _unitOfWork = unitOfWork;
         _authService = authService;
         _jwtTokenGenerator = jwtTokenGenerator;
+        _emailSender = emailSender;
     }
 
     public async Task<ErrorOr<AuthenticationResult>> Handle(RegisterCommand command, CancellationToken cancellationToken)
@@ -44,6 +47,8 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<A
         await _unitOfWork.CompleteAsync();
 
         await _authService.CreateUserAsync(user, command.Password);
+
+        var emailResult = await _emailSender.SendEmailAsync("nicolasundiano@gmail.com","hola");
 
         var token = _jwtTokenGenerator.GenerateToken(user);
 

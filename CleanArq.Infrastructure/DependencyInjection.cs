@@ -4,6 +4,7 @@ using CleanArq.Application.Common.Interfaces.Services;
 using CleanArq.Infrastructure.IdentityAuth;
 using CleanArq.Infrastructure.Persistence;
 using CleanArq.Infrastructure.Services;
+using CleanArq.Infrastructure.Services.SendGrid;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -20,11 +21,18 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddAuthentication(configuration);
+
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+
         services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+
         services.AddDbContext<AppDbContext>(c =>
                 c.UseSqlServer(configuration.GetConnectionString("AppConnection")));
+
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+
+        services.AddSingleton<IEmailSender, SendGridEmailSender>();
+        services.Configure<SendGridSettings>(configuration.GetSection(SendGridSettings.SectionName));
 
         return services;
     }
