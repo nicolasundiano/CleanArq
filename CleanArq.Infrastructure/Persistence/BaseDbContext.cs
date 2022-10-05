@@ -33,7 +33,7 @@ public class BaseDbContext : DbContext
             if (entityEntry.State == EntityState.Added)
             {
                 ((BaseEntity)entityEntry.Entity).CreatedAt = DateTime.UtcNow;
-                ((BaseEntity)entityEntry.Entity).CreatedBy = this._httpContextAccessor?.HttpContext?.User?.Identity?.Name ?? "MyApp";
+                ((BaseEntity)entityEntry.Entity).CreatedBy = this._httpContextAccessor?.HttpContext?.User?.Identity?.Name ?? "SYSTEM";
             }
             else
             {
@@ -42,7 +42,7 @@ public class BaseDbContext : DbContext
             }
 
             ((BaseEntity)entityEntry.Entity).ModifiedAt = DateTime.UtcNow;
-            ((BaseEntity)entityEntry.Entity).ModifiedBy = this._httpContextAccessor?.HttpContext?.User?.Identity?.Name ?? "MyApp";
+            ((BaseEntity)entityEntry.Entity).ModifiedBy = this._httpContextAccessor?.HttpContext?.User?.Identity?.Name ?? "SYSTEM";
         }
 
         return await base.SaveChangesAsync(cancellationToken);
