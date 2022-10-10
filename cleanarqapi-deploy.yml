@@ -25,6 +25,6 @@ spec:
             - containerPort: 80
           env:
             - name: ConnectionStrings__AppConnection
-              value: Server=mssql-service;Database=Seguridad;User=sa;Password=Nosejose20!
+              value: Server=sqlserver-app-service;Database=cleanArq;User=sa;Password=Nosejose20!
             - name: ConnectionStrings__IdentityAuthConnection
-              value: Server=mssql-service;Database=Seguridad;User=sa;Password=Nosejose20!
+              value: Server=sqlserver-security-service;Database=cleanArq.identity;User=sa;Password=Nosejose20!
