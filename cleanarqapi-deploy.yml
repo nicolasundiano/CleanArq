@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: cleanarqapi-app
-          image: nicolasundiano/cleanarqapi:latest
+          image: nicolasundiano/cleanarqapi:v2.#{Build.BuildId}#
           ports:
             - containerPort: 80
           env:
