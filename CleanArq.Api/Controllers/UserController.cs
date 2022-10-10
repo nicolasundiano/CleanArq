@@ -33,7 +33,6 @@ public class UserController : ApiController
     [AllowAnonymous]
     public async Task<IActionResult> GetUsers([FromQuery] GetUserListPaginatedCommand query)
     {
-        return Ok("asdd");
         ErrorOr<PaginatedList<UserDto>> result = await _mediator.Send(query);
 
         return result.Match(
