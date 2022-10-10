@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cleanarqapi-pod
+  labels:
+    app: cleanarqapi
+    type: microservice
+spec:
+  containers:
+    - name: cleanarqapi-app
+      image: nicolasundiano/cleanarqapi:latest
+      ports:
+        - containerPort: 80
+      env:
+        - name: ConnectionStrings__AppConnection
+          value: Server=sqlserver-app-service;Database=cleanArq;User=sa;Password=Nosejose20!
+        - name: ConnectionStrings__IdentityAuthConnection
+          value: Server=sqlserver-security-service;Database=cleanArq.identity;User=sa;Password=Nosejose20!

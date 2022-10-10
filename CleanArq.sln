@@ -19,6 +19,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArq.Infrastructure", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{428DE5D9-2E27-4C2D-9750-05FDA145A110}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "kubernetes", "kubernetes", "{326D17EE-406A-4972-99E8-7C90ACEFB3DA}"
+	ProjectSection(SolutionItems) = preProject
+		cleanarqapi-deploy.yml = cleanarqapi-deploy.yml
+		cleanarqapi-pod.yml = cleanarqapi-pod.yml
+		cleanarqapi-service.yml = cleanarqapi-service.yml
+		sqlserver-app-deploy.yml = sqlserver-app-deploy.yml
+		sqlserver-app-pod.yml = sqlserver-app-pod.yml
+		sqlserver-app-service.yml = sqlserver-app-service.yml
+		sqlserver-security-deploy.yml = sqlserver-security-deploy.yml
+		sqlserver-security-pod.yml = sqlserver-security-pod.yml
+		sqlserver-security-service.yml = sqlserver-security-service.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

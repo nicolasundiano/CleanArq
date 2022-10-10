@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cleanarqapi-deploy
+  labels:
+    name: cleanarqapi-deploy
+    app: microservice
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cleanarqapi
+      type: microservice
+  template:
+    metadata:
+      name: cleanarqapi-pod
+      labels:
+        app: cleanarqapi
+        type: microservice
+    spec:
+      containers:
+        - name: cleanarqapi-app
+          image: nicolasundiano/cleanarqapi:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: ConnectionStrings__AppConnection
+              value: Server=mssql-service;Database=Seguridad;User=sa;Password=Nosejose20!
+            - name: ConnectionStrings__IdentityAuthConnection
+              value: Server=mssql-service;Database=Seguridad;User=sa;Password=Nosejose20!

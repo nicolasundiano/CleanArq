@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sqlserver-security-deploy
+  labels:
+    name: sqlserver-security-deploy
+    app: cleanarqapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cleanarqapi
+      name: sqlserver-security-pod
+  template:
+    metadata:
+      name: sqlserver-security-pod
+      labels:
+        app: cleanarqapi
+        name: sqlserver-security-pod
+    spec:
+      containers:
+        - name: sqlserver-security
+          image: mcr.microsoft.com/mssql/server
+          ports:
+            - containerPort: 1433
+          env:
+          - name: ACCEPT_EULA
+            value: "Y"
+          - name: SA_PASSWORD
+            value: "Nosejose20!"
