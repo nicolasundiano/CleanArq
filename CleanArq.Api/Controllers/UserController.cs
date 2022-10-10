@@ -34,7 +34,7 @@ public class UserController : ApiController
     public async Task<IActionResult> GetUsers([FromQuery] GetUserListPaginatedCommand query)
     {
         ErrorOr<PaginatedList<UserDto>> result = await _mediator.Send(query);
-
+        //
         return result.Match(
             result => Ok(result),
             errors => Problem(errors));
