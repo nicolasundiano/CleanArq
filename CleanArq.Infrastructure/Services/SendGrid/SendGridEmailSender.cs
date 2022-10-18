@@ -19,7 +19,7 @@ public class SendGridEmailSender : IEmailSender
         var apiKey = _settings.ApiKey;
         var client = new SendGridClient(apiKey);
         var from = new EmailAddress(_settings.EmailFrom, _settings.NameFrom);
-        var subject = "Sending with SendGrid is Fun :)";
+        var subject = "Sending with SendGrid is Fun :).";
         var to = new EmailAddress(emailTo, "Destination User");
         var plainTextContent = message;
         var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
